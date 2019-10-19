@@ -5,6 +5,7 @@ As of right now, the game is in very early stages, but as time goes on I plan on
 XP, more advanced AI, more encounters, more classes, and more abilities/spells/items/weapons.
 
 **Current Version**
+
 Version 0.1 -- Initial release, 10/19/19
 
 *Classes*
