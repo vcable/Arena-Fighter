@@ -2,6 +2,9 @@
 
 import classes
 import enemies
+import sys
+from termcolor import colored, cprint
+import time
 
 # Keeps track of player character
 # This class has a dynamically created variable called player_character that is
@@ -36,13 +39,16 @@ class Combat:
     # Player turn
     def player_turn(self):
         
-        print(f"It's your turn!  Select an action.")
+        
+        print(f"\nIt's your turn!  Select an action.")
         print("You can attack or use a potion.  Enter 'attack' or 'potion'.")
-        player_input = input()
+        player_input = input("> ")
        
         if player_input.lower().strip("\n") == "attack":
             PlayerCharacter.player_character.attack(CurrentEnemy.current_enemy.name)
+            time.sleep(2)
             CurrentEnemy.current_enemy.take_damage(PlayerCharacter.player_character.damage_done)
+            time.sleep(2)
             
             # Check death condition
             CurrentEnemy.current_enemy.check_death()
@@ -50,9 +56,12 @@ class Combat:
            
     # Enemy turn
     def enemy_turn(self):
-            print(f"It is {CurrentEnemy.current_enemy.name}'s turn.")
+            print(f"\nIt is {CurrentEnemy.current_enemy.name}'s turn.")
+            time.sleep(2)
             CurrentEnemy.current_enemy.attack(PlayerCharacter.player_character.name)
+            time.sleep(2)
             PlayerCharacter.player_character.take_damage(CurrentEnemy.current_enemy.damage_done)
+            time.sleep(2)
             
             # Check death condition
             PlayerCharacter.player_character.check_death()
@@ -66,33 +75,38 @@ class Encounters:
         CurrentEnemy.current_enemy = enemies.WeakSwordsman("Glorb")
         combat = Combat()
         combat.combat_loop()
-        print(f"You have defeated the Weak Swordsman {CurrentEnemy.current_enemy.name}! You have tasted victory, but don't expect the rest of the fights to be this easy...")
+        time.sleep(2)
+        print(f"\nYou have defeated the Weak Swordsman {CurrentEnemy.current_enemy.name}! You have tasted victory, but don't expect the rest of the fights to be this easy...")
     
     # Bear encounter   
     def bear_encounter(self):
         CurrentEnemy.current_enemy = enemies.Bear("Rusty")
         combat = Combat()
         combat.combat_loop()
-        print(f"You have defeated the bear {CurrentEnemy.current_enemy.name}, yet there are many battles that lie ahead...")
+        print(f"\nYou have defeated the bear {CurrentEnemy.current_enemy.name}, yet there are many battles that lie ahead...")
         
     def seasoned_g_encounter(self):
         CurrentEnemy.current_enemy = enemies.SeasonedGladiator("Olaf")
         combat = Combat()
         combat.combat_loop()
-        print(f"You have defeated the seasoned gladiator {CurrentEnemy.current_enemy.name}, but there are still many battles on the horizon...")
+        time.sleep(2)
+        print(f"\nYou have defeated the seasoned gladiator {CurrentEnemy.current_enemy.name}, but there are still many battles on the horizon...")
         
     def basilisk_encounter(self):
         CurrentEnemy.current_enemy = enemies.Basilisk("Ronny")
         combat = Combat()
         combat.combat_loop()
-        print(f"You have defeated the hissing basilisk Ronny, but there are more encounters ahead...")
+        time.sleep(2)
+        print(f"\nYou have defeated the hissing basilisk Ronny, but there are more encounters ahead...")
         
     def dragon_encounter(self):
         CurrentEnemy.current_enemy = enemies.SmallDragon("Drogon")
         combat = Combat()
         combat.combat_loop()
-        print(f"You have defeated the small dragon Drogon, and quelled the fire in his lungs.")
-        print("You are the champion of the arena!")
+        time.sleep(2)
+        print(f"\nYou have defeated the small dragon Drogon, and quelled the fire in his lungs.")
+        time.sleep(2)
+        cprint("\nYou are the champion of the arena!", "red")
         exit(0)
         
 
@@ -102,9 +116,18 @@ class Game:
 
         
         # Introductory message
-        print("Welcome to Arena Fighter")
+        
+        cprint(              
+                             """
+                                _________________________________________
+                                                
+                                                WELCOME TO
+                                               
+                                               ARENA FIGHTER
+                                _________________________________________""", "red")
         
         # Create player character
+        time.sleep(2)
         self.create_pc()
         
         # Start first encounter
@@ -122,26 +145,26 @@ class Game:
     # Handles creation of player character
     def create_pc(self):
 
-        print("Please select your class: Fighter, Mage, or Hunter")
+        print("\nPlease select your class: Fighter, Mage, or Hunter")
 
-        class_selection = input()
+        class_selection = input("> ")
 
         if class_selection.lower().strip("\n") == "fighter":
 
             print("Pick a name for your fighter!")
-            fighter_name = input()
+            fighter_name = input("> ")
             PlayerCharacter.player_character = classes.Fighter(fighter_name)
 
         elif class_selection.lower().strip("\n") == "mage":
 
             print("Pick a name for your mage!")
-            mage_name = input()
+            mage_name = input("> ")
             PlayerCharacter.player_character = classes.Mage(mage_name)
 
         elif class_selection.lower().strip("\n") == "hunter":
 
             print("Pick a name for your hunter!")
-            hunter_name = input()
+            hunter_name = input("> ")
             PlayerCharacter.player_character = classes.Hunter(hunter_name)
             
         else:
@@ -155,7 +178,8 @@ class Game:
         arena = Encounters()
     
         # Starts first encounter
-        print("Welcome to the arena, warrior!")
+        cprint("\nWelcome to the arena, warrior!", "red")
+        time.sleep(2.5)
         arena.w_sword_encounter()
         
     def encounter_2(self):

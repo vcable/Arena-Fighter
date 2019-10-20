@@ -1,15 +1,18 @@
 # Defines all the enemies that can be encountered in the arena
 
+import time
 import weapons
 import class_methods
+from termcolor import colored, cprint
 
 
 class WeakSwordsman:
 
     # Sets name, and basic stats
     def __init__(self, name):
-        self.entity_class = "Weak Swordsman"
-        self.name = name
+        time.sleep(2)
+        self.entity_class = colored("weak swordsman", "red")
+        self.name = colored(name, "red")
         self.max_health = 30
         self.current_health = 30
         self.damage_done = 0
@@ -18,7 +21,7 @@ class WeakSwordsman:
         self.strength = 3
         self.dexterity = 1
         
-        print(f"A Weak Swordsman named {self.name} appears! He is armed with a {self.weapon.weapon_type}")
+        print(f"\nA {self.entity_class} named {self.name} appears! He is armed with a {self.weapon.weapon_type}")
 
     # Attack function is imported from the class_methods module
     attack = class_methods.attack
@@ -32,8 +35,9 @@ class WeakSwordsman:
 class Bear:
     
     def __init__(self, name):
-        self.entity_class = "Bear"
-        self.name = name
+        time.sleep(2)
+        self.entity_class = colored("bear", "red")
+        self.name = colored(name, "red")
         self.max_health = 50
         self.current_health = 50
         self.damage_done = 0
@@ -42,7 +46,7 @@ class Bear:
         self.strength = 10
         self.dexterity = 2
         
-        print(f"A bear named {self.name} appears! It's claws look terribly sharp...")
+        print(f"A {self.entity_class} named {self.name} appears! It's claws look terribly sharp...")
         
     attack = class_methods.attack
     
@@ -53,8 +57,9 @@ class Bear:
 class SeasonedGladiator:
     
     def __init__(self, name):
-        self.entity_class = "Seasoned Gladiator"
-        self.name = name
+        time.sleep(2)
+        self.entity_class = colored("seasoned gladiator", "red")
+        self.name = colored(name, "red")
         self.max_health = 60
         self.current_health = 60
         self.damage_done = 0
@@ -63,7 +68,7 @@ class SeasonedGladiator:
         self.strength = 12
         self.dexterity = 5
         
-        print(f"A seasoned gladiator named {self.name} appears! He swings his morningstar menacingly...")
+        print(f"A {self.entity_class} named {self.name} appears! He swings his morningstar menacingly...")
         
     attack = class_methods.attack
     
@@ -74,8 +79,9 @@ class SeasonedGladiator:
 class Basilisk:
     
     def __init__(self, name):
-        self.entity_class = "basilisk"
-        self.name = name
+        time.sleep(2)
+        self.entity_class = colored("basilisk", "red")
+        self.name = colored(name, "red")
         self.max_health = 60
         self.current_health = 60
         self.damage_done = 0
@@ -84,7 +90,7 @@ class Basilisk:
         self.strength = 8
         self.dexterity = 10
         
-        print(f"A basilisk named {self.name} appears! His fangs drip with poison...")
+        print(f"A {self.entity_class} named {self.name} appears! His fangs drip with poison...")
         
     attack = class_methods.attack
     
@@ -95,8 +101,9 @@ class Basilisk:
 class SmallDragon:
     
     def __init__(self, name):
-        self.entity_class = "small dragon"
-        self.name = name
+        time.sleep(2)
+        self.entity_class = colored("small dragon", "red")
+        self.name = colored(name, "red")
         self.max_health = 70
         self.current_health = 70
         self.damage_done = 0
@@ -105,7 +112,7 @@ class SmallDragon:
         self.strength = 12
         self.dexterity = 4
         
-        print(f"A small dragon named {self.name} appears! His eyes glow like embers...")
+        print(f"A {self.entity_class} named {self.name} appears! His eyes glow like embers...")
         
     attack = class_methods.attack
     

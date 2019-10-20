@@ -10,12 +10,13 @@
 import weapons
 import class_methods
 import spells
+from termcolor import colored, cprint
 
 class Fighter:
 
     # Init function to set a user-defined name and default stats
     def __init__(self, name):
-        self.name = name 
+        self.name = colored(name, "blue")
         self.weapon = weapons.Shortsword
         self.max_health = 100
         self.current_health = 100
@@ -23,7 +24,8 @@ class Fighter:
         self.strength = 10
         self.dexterity = 5
         self.damage_done = 0
-        print(f"Your fighter's name is {self.name} and he is armed with a {self.weapon.weapon_type}.")
+        
+        print(f"\nYour fighter's name is {self.name} and he is armed with a {self.weapon.weapon_type}.")
 
     # Attacks a target and does damage based on weapon
     attack = class_methods.attack
@@ -75,11 +77,11 @@ class Mage:
     def pick_spell(self):
         self.list_spells()
         print("Enter a spell to equip it.")
-        spell_selection = input()
+        spell_selection = input("> ")
         
         if spell_selection.lower().strip("\n") == "fireball":
             print("You have selected the Fireball spell.  Are you sure? (yes/no)")
-            p_input = input()
+            p_input = input("> ")
             if p_input.lower().strip("\n") == "yes":
                 self.equiped_spell = spells.Fireball
             elif p_input.lower().strip("\n") == "no":
@@ -88,7 +90,7 @@ class Mage:
                 
         elif spell_selection.lower().strip("\n") == "frozen arrow":
             print("You have selected the Frozen Arrow spell.  Are you sure? (yes/no)")
-            p_input = input()
+            p_input = input("> ")
             if p_input.lower().strip("\n") == "yes":
                 self.equiped_spell = spells.FrozenArrow
             elif p_input.lower().strip("\n") == "no":
@@ -97,7 +99,7 @@ class Mage:
             
         elif spell_selection.lower().strip("\n") == "meteor shower":
             print("You have selected the Meteor Shower spell.  Are you sure? (yes/no)")
-            p_input = input()
+            p_input = input("> ")
             if p_input.lower().strip("\n") == "yes":
                 self.equiped_spell = spells.MeteorShower
             elif p_input.lower().strip("\n") == "no":
@@ -127,7 +129,7 @@ class Mage:
     def attack(self, target):
         self.pick_spell()
         print("Cast currently equipped spell? (yes/no)")
-        p_input = input()
+        p_input = input("> ")
         if p_input.lower().strip("\n") == "yes":
             target = target
             self.cast_equipped_spell(target)
