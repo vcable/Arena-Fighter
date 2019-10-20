@@ -2,7 +2,6 @@
 
 import classes
 import enemies
-import sys
 from termcolor import colored, cprint
 import time
 
@@ -39,9 +38,7 @@ class Combat:
     # Player turn
     def player_turn(self):
         
-        
-        print(f"\nIt's your turn!  Select an action.")
-        print("You can attack or use a potion.  Enter 'attack' or 'potion'.")
+        print("\nYou can attack, use a potion, or view your inventory.  Enter 'attack', 'potion', or 'inventory'.")
         player_input = input("> ")
        
         if player_input.lower().strip("\n") == "attack":
@@ -53,11 +50,26 @@ class Combat:
             # Check death condition
             CurrentEnemy.current_enemy.check_death()
             
+        elif player_input.lower().strip("\n") == "potion":
+            time.sleep(2)
+            PlayerCharacter.player_character.consume_potion()
+        
+        elif player_input.lower().strip("\n") == "inventory":
+            PlayerCharacter.player_character.inventory.print_inventory()
+            self.player_turn()
+            
+        else:
+            time.sleep(2)
+            print("Invalid input, please try again.")
+            self.player_turn()
+        
+            
            
     # Enemy turn
     def enemy_turn(self):
             print(f"\nIt is {CurrentEnemy.current_enemy.name}'s turn.")
-            time.sleep(2)
+            CurrentEnemy.current_enemy.consume_potion()
+            time.sleep(2)    
             CurrentEnemy.current_enemy.attack(PlayerCharacter.player_character.name)
             time.sleep(2)
             PlayerCharacter.player_character.take_damage(CurrentEnemy.current_enemy.damage_done)
@@ -73,6 +85,7 @@ class Encounters:
     # Handles the Weak Swordsman encounter
     def w_sword_encounter(self):
         CurrentEnemy.current_enemy = enemies.WeakSwordsman("Glorb")
+        time.sleep(2)
         combat = Combat()
         combat.combat_loop()
         time.sleep(2)
@@ -154,22 +167,26 @@ class Game:
             print("Pick a name for your fighter!")
             fighter_name = input("> ")
             PlayerCharacter.player_character = classes.Fighter(fighter_name)
+            time.sleep(2)
 
         elif class_selection.lower().strip("\n") == "mage":
 
             print("Pick a name for your mage!")
             mage_name = input("> ")
             PlayerCharacter.player_character = classes.Mage(mage_name)
+            time.sleep(2)
 
         elif class_selection.lower().strip("\n") == "hunter":
 
             print("Pick a name for your hunter!")
             hunter_name = input("> ")
             PlayerCharacter.player_character = classes.Hunter(hunter_name)
+            time.sleep(2)
             
         else:
             
             print("That is not a valid class, please try again.")
+            time.sleep(2)
             self.create_pc()
     
     def encounter_1(self):
@@ -188,7 +205,7 @@ class Game:
         
         # Same exact functionality as encounter_1
         arena = Encounters()
-        print("Having dealt with the Weak Swordsman, you wipe his blood from your blade.  \nIn the distance, you hear the ferocious growl of a bear...")
+        print("\nHaving dealt with the Weak Swordsman, you wipe his blood from your blade.  \nIn the distance, you hear the ferocious growl of a bear...")
         arena.bear_encounter()
         
     def encounter_3(self):
@@ -196,7 +213,7 @@ class Game:
         PlayerCharacter.player_character.reset_stats()
         
         arena = Encounters()
-        print("The bear heaves it's last breath, rolled over on its side.\nWith barely a moment to breathe, you see your next opponent approaching...")
+        print("\nThe bear heaves it's last breath, rolled over on its side.\nWith barely a moment to breathe, you see your next opponent approaching...")
         arena.seasoned_g_encounter()
         
     def encounter_4(self):
@@ -204,7 +221,7 @@ class Game:
         PlayerCharacter.player_character.reset_stats()
         
         arena = Encounters()
-        print("The gladiator is gone, but you hear the hiss of a basilisk...")
+        print("\nThe gladiator is gone, but you hear the hiss of a basilisk...")
         arena.basilisk_encounter()
         
     def encounter_5(self):
@@ -212,7 +229,7 @@ class Game:
         PlayerCharacter.player_character.reset_stats()
         
         arena = Encounters()
-        print("The basilisk lies at your feet, cut in half. \nYou feel the warmth of fire on the back of your neck, and look around to see an angry-looking dragon...")
+        print("\nThe basilisk lies at your feet, cut in half. \nYou feel the warmth of fire on the back of your neck, and look around to see an angry-looking dragon...")
         arena.dragon_encounter()
         
 arena_fighter = Game()

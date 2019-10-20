@@ -1,8 +1,11 @@
 # Defines all the enemies that can be encountered in the arena
+# ALL ENEMY METHOD DOCUMENTATION IS IN THE WEAKSWORDSMAN CLASS 
+# SINCE ALL THE METHODS ARE THE SAME
 
 import time
 import weapons
 import class_methods
+import inventory
 from termcolor import colored, cprint
 
 
@@ -10,7 +13,6 @@ class WeakSwordsman:
 
     # Sets name, and basic stats
     def __init__(self, name):
-        time.sleep(2)
         self.entity_class = colored("weak swordsman", "red")
         self.name = colored(name, "red")
         self.max_health = 30
@@ -20,6 +22,7 @@ class WeakSwordsman:
         self.weapon = weapons.RustyShortsword
         self.strength = 3
         self.dexterity = 1
+        self.inventory = inventory.Inventory(f"{self.weapon.weapon_type}", 1, 0)
         
         print(f"\nA {self.entity_class} named {self.name} appears! He is armed with a {self.weapon.weapon_type}")
 
@@ -31,6 +34,10 @@ class WeakSwordsman:
 
     # Checks to see if current health is 0 and prints death message
     check_death = class_methods.check_death
+    
+    # Allows AI to consume a potion.  They do this automatically if their health is below 20.
+    # (the below 20 rule is coded out in main.py in the enemy_turn() method)
+    consume_potion = class_methods.enemy_consume_potion
     
 class Bear:
     
@@ -45,6 +52,7 @@ class Bear:
         self.weapon = weapons.Claws
         self.strength = 10
         self.dexterity = 2
+        self.inventory = inventory.Inventory(f"{self.weapon.weapon_type}", 1, 0)
         
         print(f"A {self.entity_class} named {self.name} appears! It's claws look terribly sharp...")
         
@@ -53,6 +61,8 @@ class Bear:
     take_damage = class_methods.take_damage
     
     check_death = class_methods.check_death
+    
+    consume_potion = class_methods.enemy_consume_potion
     
 class SeasonedGladiator:
     
@@ -67,6 +77,7 @@ class SeasonedGladiator:
         self.weapon = weapons.Morningstar
         self.strength = 12
         self.dexterity = 5
+        self.inventory = inventory.Inventory(f"{self.weapon.weapon_type}", 1, 0)
         
         print(f"A {self.entity_class} named {self.name} appears! He swings his morningstar menacingly...")
         
@@ -75,6 +86,8 @@ class SeasonedGladiator:
     take_damage = class_methods.take_damage
     
     check_death = class_methods.check_death
+    
+    consume_potion = class_methods.enemy_consume_potion
     
 class Basilisk:
     
@@ -89,6 +102,7 @@ class Basilisk:
         self.weapon = weapons.Fangs
         self.strength = 8
         self.dexterity = 10
+        self.inventory = inventory.Inventory(f"{self.weapon.weapon_type}", 1, 0)
         
         print(f"A {self.entity_class} named {self.name} appears! His fangs drip with poison...")
         
@@ -98,6 +112,7 @@ class Basilisk:
     
     check_death = class_methods.check_death
     
+    consume_potion = class_methods.enemy_consume_potion
 class SmallDragon:
     
     def __init__(self, name):
@@ -111,6 +126,7 @@ class SmallDragon:
         self.weapon = weapons.Firebreath
         self.strength = 12
         self.dexterity = 4
+        self.inventory = inventory.Inventory(f"{self.weapon.weapon_type}", 2, 0)
         
         print(f"A {self.entity_class} named {self.name} appears! His eyes glow like embers...")
         
@@ -119,6 +135,8 @@ class SmallDragon:
     take_damage = class_methods.take_damage
     
     check_death = class_methods.check_death
+    
+    consume_potion = class_methods.enemy_consume_potion
 
     
 

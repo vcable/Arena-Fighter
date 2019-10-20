@@ -10,6 +10,7 @@
 import weapons
 import class_methods
 import spells
+import inventory
 from termcolor import colored, cprint
 
 class Fighter:
@@ -24,6 +25,7 @@ class Fighter:
         self.strength = 10
         self.dexterity = 5
         self.damage_done = 0
+        self.inventory = inventory.Inventory(f"{self.weapon.weapon_type}", 1, 0)
         
         print(f"\nYour fighter's name is {self.name} and he is armed with a {self.weapon.weapon_type}.")
 
@@ -39,6 +41,8 @@ class Fighter:
     # Resets health
     reset_stats = class_methods.reset_stats
 
+    # Uses health potion
+    consume_potion = class_methods.player_consume_potion
 
 class Mage:
     
@@ -57,6 +61,7 @@ class Mage:
         self.fireball = spells.Fireball
         self.frozen_arrow = spells.FrozenArrow
         self.meteor_shower = spells.MeteorShower
+        self.inventory = inventory.Inventory(f"{self.weapon}", 1, 2)
         
         print(f"Your mage's name is {self.name} and he is armed with a {self.weapon.weapon_type}.")
     
@@ -68,6 +73,9 @@ class Mage:
     
     # Resets health and mana
     reset_stats = class_methods.reset_stats
+    
+    # Uses health/mana potion
+    consume_potion = class_methods.player_consume_potion
         
     # Keeps track of mage's spells and lists them
     def list_spells(self):
@@ -108,9 +116,6 @@ class Mage:
             
         else:
             print("That is not a valid spell, please try again.  If you would like to choose a different action, enter 'action'.  Otherwise, press the enter key.")
-            #p_input = input()
-            #if p_input.lower().strip("\n") == "action":
-                #main.Combat.player_turn()
             self.pick_spell()
     
         
@@ -151,6 +156,8 @@ class Hunter:
         self.alive = True
         self.strength = 5
         self.dexterity = 10
+        self.inventory = inventory.Inventory(f"{self.weapon}", 1, 0)
+        
         print(f"Your hunter's name is {self.name} and he is armed with a {self.weapon.weapon_type}.")
         
     # Attack method works the same way as the fighter
@@ -164,4 +171,7 @@ class Hunter:
     
     # Resets health 
     reset_stats = class_methods.reset_stats
+    
+    # Uses health potion
+    consume_potion = class_methods.player_consume_potion
 
