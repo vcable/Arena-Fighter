@@ -3,14 +3,16 @@
 import classes
 import enemies
 
-# Keeps track of player character 
+# Keeps track of player character
 # This class has a dynamically created variable called player_character that is
 # created when the player goes through the character creation process.
 # This variable ties directly to the picked class
+
+
 class PlayerCharacter:
-    
-   def __init__(self):
-       return
+
+    def __init__(self):
+        return
 
 
 # Keeps track of current enemy
@@ -24,7 +26,13 @@ class CurrentEnemy:
 
 # Takes care of combat loop
 class Combat:
-        
+    
+    # Combat loop w/ turns
+    def combat_loop(self):
+        while CurrentEnemy.current_enemy.alive == True:
+            self.enemy_turn()
+            self.player_turn()
+    
     # Player turn
     def player_turn(self):
         
@@ -57,13 +65,35 @@ class Encounters:
     def w_sword_encounter(self):
         CurrentEnemy.current_enemy = enemies.WeakSwordsman("Glorb")
         combat = Combat()
-        
-        while CurrentEnemy.current_enemy.alive == True:
-            combat.enemy_turn()
-            combat.player_turn()
-        
+        combat.combat_loop()
         print(f"You have defeated the Weak Swordsman {CurrentEnemy.current_enemy.name}! You have tasted victory, but don't expect the rest of the fights to be this easy...")
-            
+    
+    # Bear encounter   
+    def bear_encounter(self):
+        CurrentEnemy.current_enemy = enemies.Bear("Rusty")
+        combat = Combat()
+        combat.combat_loop()
+        print(f"You have defeated the bear {CurrentEnemy.current_enemy.name}, yet there are many battles that lie ahead...")
+        
+    def seasoned_g_encounter(self):
+        CurrentEnemy.current_enemy = enemies.SeasonedGladiator("Olaf")
+        combat = Combat()
+        combat.combat_loop()
+        print(f"You have defeated the seasoned gladiator {CurrentEnemy.current_enemy.name}, but there are still many battles on the horizon...")
+        
+    def basilisk_encounter(self):
+        CurrentEnemy.current_enemy = enemies.Basilisk("Ronny")
+        combat = Combat()
+        combat.combat_loop()
+        print(f"You have defeated the hissing basilisk Ronny, but there are more encounters ahead...")
+        
+    def dragon_encounter(self):
+        CurrentEnemy.current_enemy = enemies.SmallDragon("Drogon")
+        combat = Combat()
+        combat.combat_loop()
+        print(f"You have defeated the small dragon Drogon, and quelled the fire in his lungs.")
+        print("You are the champion of the arena!")
+        exit(0)
         
 
 class Game:
@@ -79,6 +109,15 @@ class Game:
         
         # Start first encounter
         self.encounter_1()
+        
+        # Second encounter, etc
+        self.encounter_2()
+        
+        self.encounter_3()
+        
+        self.encounter_4()
+        
+        self.encounter_5()
 
     # Handles creation of player character
     def create_pc(self):
@@ -115,8 +154,41 @@ class Game:
         # Makes encounters available
         arena = Encounters()
     
-        #Starts first encounter
+        # Starts first encounter
         print("Welcome to the arena, warrior!")
         arena.w_sword_encounter()
-    
+        
+    def encounter_2(self):
+        
+        PlayerCharacter.player_character.reset_stats()
+        
+        # Same exact functionality as encounter_1
+        arena = Encounters()
+        print("Having dealt with the Weak Swordsman, you wipe his blood from your blade.  \nIn the distance, you hear the ferocious growl of a bear...")
+        arena.bear_encounter()
+        
+    def encounter_3(self):
+        
+        PlayerCharacter.player_character.reset_stats()
+        
+        arena = Encounters()
+        print("The bear heaves it's last breath, rolled over on its side.\nWith barely a moment to breathe, you see your next opponent approaching...")
+        arena.seasoned_g_encounter()
+        
+    def encounter_4(self):
+        
+        PlayerCharacter.player_character.reset_stats()
+        
+        arena = Encounters()
+        print("The gladiator is gone, but you hear the hiss of a basilisk...")
+        arena.basilisk_encounter()
+        
+    def encounter_5(self):
+        
+        PlayerCharacter.player_character.reset_stats()
+        
+        arena = Encounters()
+        print("The basilisk lies at your feet, cut in half. \nYou feel the warmth of fire on the back of your neck, and look around to see an angry-looking dragon...")
+        arena.dragon_encounter()
+        
 arena_fighter = Game()

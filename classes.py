@@ -33,6 +33,9 @@ class Fighter:
 
     # Checks for death
     check_death = class_methods.check_death
+    
+    # Resets health
+    reset_stats = class_methods.reset_stats
 
 
 class Mage:
@@ -60,6 +63,9 @@ class Mage:
     
     # Checks if current_health <= 0
     check_death = class_methods.check_death
+    
+    # Resets health and mana
+    reset_stats = class_methods.reset_stats
         
     # Keeps track of mage's spells and lists them
     def list_spells(self):
@@ -153,4 +159,7 @@ class Hunter:
     
     # Check if current_health <= 0
     check_death = class_methods.check_death
+    
+    # Resets health 
+    reset_stats = class_methods.reset_stats
 

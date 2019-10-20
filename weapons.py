@@ -20,3 +20,23 @@ class Longbow:
     
     weapon_type = "Longbow"
     damage = 10
+    
+class Claws:
+    
+    weapon_type = "claws"
+    damage = 10
+    
+class Morningstar:
+    
+    weapon_type = "morningstar"
+    damage = 13
+    
+class Fangs:
+    
+    weapon_type = "fangs"
+    damage = 12
+    
+class Firebreath:
+    
+    weapon_type = "fire breath"
+    damage = 10
