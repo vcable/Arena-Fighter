@@ -4,7 +4,18 @@ The player can choose between three classes: Fighter, Hunter, and Mage.
 As of right now, the game is in very early stages, but as time goes on I plan on adding more complex features like
 XP, more advanced AI, more encounters, more classes, and more abilities/spells/items/weapons.
 
+**Dependencies**
+
+At the moment, there is only one required library, <a href="https://pypi.org/project/termcolor/">termcolor</a>.
+
 **Changelog**
+
+
+**Version 0.3** -- 4th update, 10/19/19
+
+This update adds general text formatting and text highliting, making everything much prettier to look at.  This is done through the 
+wonderful <a href="https://pypi.org/project/termcolor/">termcolor</a> library.
+
 
 **Version 0.2** -- 3rd update, 10/19/19
 
