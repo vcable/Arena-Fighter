@@ -7,7 +7,7 @@ XP, more advanced AI, more encounters, more classes, and more abilities/spells/i
 
 **How to Run the Game**
 
-If you're interested in checking out Arena Fighter, simply clone the repository and run *main.py* with Python 3.  
+If you're interested in checking out Arena Fighter, simply clone the repository, install the dependencies listed below, and run *main.py* with Python 3.  
 DISCLAIMER: THE GAME IS NOT FINISHED AT ALL
 
 **Dependencies**
