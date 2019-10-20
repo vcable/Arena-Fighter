@@ -6,6 +6,20 @@ XP, more advanced AI, more encounters, more classes, and more abilities/spells/i
 
 **Changelog**
 
+**Version 0.2** -- 3rd update, 10/19/19
+
+This update adds all five encounters to the game.  I might add more later, but for now I think that five is plenty.  
+The current enemies are, in order:
+
+    Weak Swordsman
+    Bear
+    Seasoned Gladiator
+    Basilisk
+    Small Dragon
+
+Each enemy has a unique weapon.
+
+
 **Version 0.11** -- 2nd update, 10/19/19
 
 This update adds functionality to allow mages to cast spells.  At the moment, there are only 3 spells: Fireball, Ice Arrow, and Meteor Shower.  
