@@ -4,6 +4,18 @@ import classes
 import enemies
 from termcolor import colored, cprint
 import time
+from os import system, name
+
+# Clears screen before game start
+def clear():
+    
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+        
+    # for mac and linux
+    else:
+        _ = system('clear')
 
 # Keeps track of player character
 # This class has a dynamically created variable called player_character that is
@@ -51,9 +63,6 @@ class Combat:
             CurrentEnemy.current_enemy.take_damage(PlayerCharacter.player_character.damage_done)
             time.sleep(2)
             
-            # Check death condition
-            CurrentEnemy.current_enemy.check_death()
-            
         elif player_input.lower().strip("\n") == "potion":
             time.sleep(2)
             PlayerCharacter.player_character.consume_potion()
@@ -84,7 +93,7 @@ class Combat:
             time.sleep(2)
             
             # Check death condition
-            PlayerCharacter.player_character.check_death()
+            PlayerCharacter.player_character.player_death()
             
 
 # Initializes encounters with different enemies
@@ -96,35 +105,35 @@ class Encounters:
         time.sleep(2)
         combat = Combat()
         combat.combat_loop()
-        time.sleep(2)
         print(f"\nYou have defeated the Weak Swordsman {CurrentEnemy.current_enemy.name}! You have tasted victory, but don't expect the rest of the fights to be this easy...")
     
     # Bear encounter   
     def bear_encounter(self):
+        time.sleep(2)
         CurrentEnemy.current_enemy = enemies.Bear("Rusty")
         combat = Combat()
         combat.combat_loop()
         print(f"\nYou have defeated the bear {CurrentEnemy.current_enemy.name}, yet there are many battles that lie ahead...")
         
     def seasoned_g_encounter(self):
+        time.sleep(2)
         CurrentEnemy.current_enemy = enemies.SeasonedGladiator("Olaf")
         combat = Combat()
         combat.combat_loop()
-        time.sleep(2)
         print(f"\nYou have defeated the seasoned gladiator {CurrentEnemy.current_enemy.name}, but there are still many battles on the horizon...")
         
     def basilisk_encounter(self):
+        time.sleep(2)
         CurrentEnemy.current_enemy = enemies.Basilisk("Ronny")
         combat = Combat()
         combat.combat_loop()
-        time.sleep(2)
         print(f"\nYou have defeated the hissing basilisk Ronny, but there are more encounters ahead...")
         
     def dragon_encounter(self):
+        time.sleep(2)
         CurrentEnemy.current_enemy = enemies.SmallDragon("Drogon")
         combat = Combat()
         combat.combat_loop()
-        time.sleep(2)
         print(f"\nYou have defeated the small dragon Drogon, and quelled the fire in his lungs.")
         time.sleep(2)
         cprint("\nYou are the champion of the arena!", "red")
@@ -135,6 +144,8 @@ class Game:
 
     def __init__(self):
 
+        # clear screen
+        clear()
         
         # Introductory message
         
@@ -213,7 +224,9 @@ class Game:
         
         # Same exact functionality as encounter_1
         arena = Encounters()
-        print("\nHaving dealt with the Weak Swordsman, you wipe his blood from your blade.  \nIn the distance, you hear the ferocious growl of a bear...")
+        print("\nHaving dealt with the Weak Swordsman, you wipe his blood from your blade.")
+        time.sleep(2)
+        print("In the distance, you hear the ferocious growl of a bear...")
         arena.bear_encounter()
         
     def encounter_3(self):
@@ -221,7 +234,9 @@ class Game:
         PlayerCharacter.player_character.reset_stats()
         
         arena = Encounters()
-        print("\nThe bear heaves it's last breath, rolled over on its side.\nWith barely a moment to breathe, you see your next opponent approaching...")
+        print("\nThe bear heaves it's last breath, rolled over on its side.")
+        time.sleep(2)
+        print("With barely a moment to breathe, you see your next opponent approaching...")
         arena.seasoned_g_encounter()
         
     def encounter_4(self):
@@ -237,7 +252,9 @@ class Game:
         PlayerCharacter.player_character.reset_stats()
         
         arena = Encounters()
-        print("\nThe basilisk lies at your feet, cut in half. \nYou feel the warmth of fire on the back of your neck, and look around to see an angry-looking dragon...")
+        print("\nThe basilisk lies at your feet, cut in half.")
+        time.sleep(2)
+        print("You feel the warmth of fire on the back of your neck, and look around to see an angry-looking dragon...")
         arena.dragon_encounter()
         
 arena_fighter = Game()

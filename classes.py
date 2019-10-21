@@ -13,6 +13,7 @@ import spells
 import inventory
 from termcolor import colored, cprint
 
+
 class Fighter:
 
     # Init function to set a user-defined name and default stats
@@ -37,7 +38,7 @@ class Fighter:
     take_damage = class_methods.take_damage
 
     # Checks for death
-    check_death = class_methods.check_death
+    player_death = class_methods.player_death
     
     # Resets health
     reset_stats = class_methods.reset_stats
@@ -71,7 +72,7 @@ class Mage:
     take_damage = class_methods.take_damage
     
     # Checks if current_health <= 0
-    check_death = class_methods.check_death
+    player_death = class_methods.player_death
     
     # Resets health and mana
     reset_stats = class_methods.reset_stats
@@ -101,7 +102,7 @@ class Mage:
     # Allows mages to pick from available spells
     def pick_spell(self):
         self.list_spells()
-        print("\nEnter a spell to equip it.")
+        print("\nEnter a spell to equip it.  Enter 'back' to go back to turn menu.")
         spell_selection = input("> ")
         
         if spell_selection.lower().strip("\n") == "fireball":
@@ -185,7 +186,7 @@ class Hunter:
     take_damage = class_methods.take_damage
     
     # Check if current_health <= 0
-    check_death = class_methods.check_death
+    player_death = class_methods.player_death
     
     # Resets health 
     reset_stats = class_methods.reset_stats

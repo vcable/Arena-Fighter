@@ -15,16 +15,20 @@ def attack(self, target):
                 self.damage_done = self.weapon.damage
                 print(f"\n{self.name} does {self.damage_done} damage with his {self.weapon.weapon_type}")
 
-# Takes damage (subtracts taken damage from max_health)
+# Takes damage (subtracts taken damage from max_health) and check for death
 def take_damage(self, damage):
         self.current_health -= damage 
         print(f"\n{self.name} took {damage} damage! Total health is now {self.current_health}/{self.max_health}")
-
-# Checks if current_health is equal to zero.  If it is, displays death message
-def check_death(self):
-    if self.current_health <= 0:
-        print(f"\n{self.name} is dead.")
-        self.alive = False
+        if self.current_health <= 0:
+                print(f"\n{self.name} is dead.")
+                self.alive = False
+    
+        
+# Player death message and program exit
+def player_death(self):
+        if self.alive == False:
+                print("You have fought valiantly in the arena, but unfortunately you have suffered defeat.")
+                exit()
         
 # Allows user to consume a potion
 def player_consume_potion(self):
@@ -32,14 +36,14 @@ def player_consume_potion(self):
         self.inventory.print_inventory()
         p_input = input("\n> ")
         
-        if p_input == "health potion" and self.inventory.health_potion > 0:
+        if p_input == "health potion" and self.inventory.health_potion > 0 and self.current_health < self.max_health:
                 self.current_health += 10
                 self.inventory.health_potion -= 1
                 print(f"\n{self.name} uses a health potion.")
                 time.sleep(2)
                 print(f"\n{self.name}'s current health is now {self.current_health}/{self.max_health}")
                 
-        elif p_input == "mana potion" and self.inventory.mana_potion > 0:
+        elif p_input == "mana potion" and self.inventory.mana_potion > 0 and self.current_mana < self.max_mana:
                 print(f"\n{self.name} uses a mana potion.")
                 self.current_mana += 10
                 self.inventory.mana_potion -= 1
@@ -48,7 +52,7 @@ def player_consume_potion(self):
                 
         else:
                 time.sleep(2)
-                print("\nEither you can't use that particular potion, or you entered some invalid input.  Try again!")
+                print("\nEither you can't use that particular potion, your health/mana points are full, or you entered some invalid input.  Try again!")
                 self.consume_potion()
                 
 # Consume potion method for AI.  I made 2 different methods because the AI has to decide independently when to use a potion
@@ -63,25 +67,29 @@ def enemy_consume_potion(self):
         else:
                 pass
         
-# Resets players stats (health/mana) before every encounter
+# Resets players stats (health/mana) before every encounter and grants potions
 def reset_stats(self):
     hp = colored("2", "yellow")
     mp = colored("1", "yellow")
     try:
         self.current_mana = self.max_mana
+        time.sleep(2)
         print(f"\n{self.name}'s mana points have been reset.  They are now at {self.current_mana}/{self.max_mana}")
     except:
         pass
     
     self.current_health = self.max_health
+    time.sleep(2)
     print(f"\n{self.name}'s health points have been reset.  They are now at {self.current_health}/{self.max_health}")
     
     if self.class_name == "Fighter" or self.class_name == "Hunter":
             self.inventory.health_potion += 2
+            time.sleep(2)
             print("\nYou have been granted " + hp + " health potions.")
     elif self.class_name == "Mage":
             self.inventory.mana_potion += 1
             self.inventory.health_potion += 2
+            time.sleep(2)
             print("\nYou have been granted " + mp + " mana potion and " + hp + " health potions.")    
 
 
