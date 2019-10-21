@@ -1,5 +1,11 @@
 **Changelog**
 
+**Version 0.42** -- 7th update, 10/21/19
+
+Added a function to clear the screen before starting the game and improved player death checks.
+More text display/formatting improvements.
+
+
 **Version 0.41** -- 6th update, 10/20/19
 
 Various enhancements to the Mage class, such as a dedicated spell screen, and some formatting fixes for combat text output.
