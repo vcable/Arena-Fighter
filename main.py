@@ -38,8 +38,12 @@ class Combat:
     # Player turn
     def player_turn(self):
         
-        print("\nYou can attack, use a potion, or view your inventory.  Enter 'attack', 'potion', or 'inventory'.")
-        player_input = input("> ")
+        if PlayerCharacter.player_character.class_name == "Mage":
+            print("\nYou can attack, use a potion, view your spells, or view your inventory.  Enter 'attack', 'potion', 'spells', or 'inventory'.")
+            player_input = input("> ")
+        else:
+            print("\nYou can attack, use a potion, or view your inventory.  Enter 'attack', 'potion', or 'inventory'.")
+            player_input = input("> ")
        
         if player_input.lower().strip("\n") == "attack":
             PlayerCharacter.player_character.attack(CurrentEnemy.current_enemy.name)
@@ -58,9 +62,13 @@ class Combat:
             PlayerCharacter.player_character.inventory.print_inventory()
             self.player_turn()
             
+        elif player_input.lower().strip("\n") == "spells" and PlayerCharacter.player_character.class_name == "Mage":
+            PlayerCharacter.player_character.list_spells()
+            self.player_turn()
+            
         else:
             time.sleep(2)
-            print("Invalid input, please try again.")
+            print("\nInvalid input, please try again.")
             self.player_turn()
         
             

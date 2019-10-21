@@ -18,6 +18,7 @@ class Fighter:
     # Init function to set a user-defined name and default stats
     def __init__(self, name):
         self.name = colored(name, "blue")
+        self.class_name = "Fighter"
         self.weapon = weapons.Shortsword
         self.max_health = 100
         self.current_health = 100
@@ -54,6 +55,7 @@ class Mage:
         self.damage_done = 0
         self.current_health = 80
         self.alive = True
+        self.class_name = "Mage"
         self.strength = 5
         self.dexterity = 6
         self.max_mana = 20
@@ -61,7 +63,7 @@ class Mage:
         self.fireball = spells.Fireball
         self.frozen_arrow = spells.FrozenArrow
         self.meteor_shower = spells.MeteorShower
-        self.inventory = inventory.Inventory(f"{self.weapon}", 1, 2)
+        self.inventory = inventory.Inventory(f"{self.weapon.weapon_type}", 1, 2)
         
         print(f"Your mage's name is {self.name} and he is armed with a {self.weapon.weapon_type}.")
     
@@ -79,67 +81,82 @@ class Mage:
         
     # Keeps track of mage's spells and lists them
     def list_spells(self):
-        print(f"Available spells: \n {self.fireball.spell_name}, {self.frozen_arrow.spell_name}, {self.meteor_shower.spell_name}.")
+        spell_list = [colored("\nMeteor Shower", "yellow"), 
+                      colored("Fireball", "yellow"), 
+                      colored("Frozen Arrow", "yellow")]
+        mana_costs = ["(15 mana)",
+                      "(10 mana)",
+                      "(10 mana)"]
+        
+        cprint("\nSPELLS", "yellow")
+        
+        # I realize this method for concatenating elements from two
+        # different arrays is dumb but I'm still new to Python
+        j = 0
+        for i in spell_list:
+            print(i + " " + mana_costs[j])  
+            j += 1
+                
     
     # Allows mages to pick from available spells
     def pick_spell(self):
         self.list_spells()
-        print("Enter a spell to equip it.")
+        print("\nEnter a spell to equip it.")
         spell_selection = input("> ")
         
         if spell_selection.lower().strip("\n") == "fireball":
-            print("You have selected the Fireball spell.  Are you sure? (yes/no)")
+            print("\nYou have selected the Fireball spell.  Are you sure? (yes/no)")
             p_input = input("> ")
             if p_input.lower().strip("\n") == "yes":
                 self.equiped_spell = spells.Fireball
             elif p_input.lower().strip("\n") == "no":
-                print("Pick another spell!")
+                print("\nPick another spell!")
                 self.pick_spell()
                 
         elif spell_selection.lower().strip("\n") == "frozen arrow":
-            print("You have selected the Frozen Arrow spell.  Are you sure? (yes/no)")
+            print("\nYou have selected the Frozen Arrow spell.  Are you sure? (yes/no)")
             p_input = input("> ")
             if p_input.lower().strip("\n") == "yes":
                 self.equiped_spell = spells.FrozenArrow
             elif p_input.lower().strip("\n") == "no":
-                print("Pick another spell!")
+                print("\nPick another spell!")
                 self.pick_spell()
             
         elif spell_selection.lower().strip("\n") == "meteor shower":
-            print("You have selected the Meteor Shower spell.  Are you sure? (yes/no)")
+            print("\nYou have selected the Meteor Shower spell.  Are you sure? (yes/no)")
             p_input = input("> ")
             if p_input.lower().strip("\n") == "yes":
                 self.equiped_spell = spells.MeteorShower
             elif p_input.lower().strip("\n") == "no":
-                print("Pick another spell!")
+                print("\nPick another spell!")
                 self.pick_spell()
             
         else:
-            print("That is not a valid spell, please try again.  If you would like to choose a different action, enter 'action'.  Otherwise, press the enter key.")
+            print("\nThat is not a valid spell, please try again.  If you would like to choose a different action, enter 'action'.  Otherwise, press the enter key.")
             self.pick_spell()
     
         
     # Casts the currently equipped spell            
     def cast_equipped_spell(self, target):
         if self.current_mana < self.equiped_spell.mana_required:
-            print("Not enough mana.  Select a different spell or drink a mana potion.")
+            print("\nNot enough mana.  Select a different spell or drink a mana potion.")
             self.pick_spell()
         else:
-            print(f"{self.name} casts {self.equiped_spell.spell_name} on {target}.")
+            print(f"\n{self.name} casts {self.equiped_spell.spell_name} on {target}.")
             self.damage_done = self.equiped_spell.damage
             self.current_mana -= self.equiped_spell.mana_required
-            print(f"{self.name} does {self.damage_done} damage with {self.equiped_spell.spell_name}.")
+            print(f"\n{self.name} does {self.damage_done} damage with {self.equiped_spell.spell_name}.")
                 
     # Allows mages to attack
     def attack(self, target):
         self.pick_spell()
-        print("Cast currently equipped spell? (yes/no)")
+        print("\nCast currently equipped spell? (yes/no)")
         p_input = input("> ")
         if p_input.lower().strip("\n") == "yes":
             target = target
             self.cast_equipped_spell(target)
         elif p_input.lower().strip("\n") == "no":
-            print("Pick a different spell.")
+            print("\nPick a different spell.")
             self.pick_spell()
             
                 
@@ -151,12 +168,13 @@ class Hunter:
         self.name = name 
         self.weapon = weapons.Longbow
         self.damage_done = 0
+        self.class_name = "Hunter"
         self.max_health = 75
         self.current_health = 75
         self.alive = True
         self.strength = 5
         self.dexterity = 10
-        self.inventory = inventory.Inventory(f"{self.weapon}", 1, 0)
+        self.inventory = inventory.Inventory(f"{self.weapon.weapon_type}", 1, 0)
         
         print(f"Your hunter's name is {self.name} and he is armed with a {self.weapon.weapon_type}.")
         

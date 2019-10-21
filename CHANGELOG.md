@@ -1,5 +1,10 @@
 **Changelog**
 
+**Version 0.41** -- 6th update, 10/20/19
+
+Various enhancements to the Mage class, such as a dedicated spell screen, and some formatting fixes for combat text output.
+
+
 **Version 0.4** -- 5th update, 10/20/19
 
 Pretty big update, this one adds:

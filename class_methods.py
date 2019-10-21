@@ -1,6 +1,7 @@
 import potions_and_items
 import time
 import inventory
+from termcolor import colored, cprint
 
 # This module defines common class methods, such as attack and deal damage
 
@@ -28,7 +29,6 @@ def check_death(self):
 # Allows user to consume a potion
 def player_consume_potion(self):
         print(f"\nWhich potion would you like to use? Look at your inventory, and select one! (enter 'health potion'/'mana potion')")
-        time.sleep(2)
         self.inventory.print_inventory()
         p_input = input("\n> ")
         
@@ -65,6 +65,8 @@ def enemy_consume_potion(self):
         
 # Resets players stats (health/mana) before every encounter
 def reset_stats(self):
+    hp = colored("2", "yellow")
+    mp = colored("1", "yellow")
     try:
         self.current_mana = self.max_mana
         print(f"\n{self.name}'s mana points have been reset.  They are now at {self.current_mana}/{self.max_mana}")
@@ -73,5 +75,13 @@ def reset_stats(self):
     
     self.current_health = self.max_health
     print(f"\n{self.name}'s health points have been reset.  They are now at {self.current_health}/{self.max_health}")
+    
+    if self.class_name == "Fighter" or self.class_name == "Hunter":
+            self.inventory.health_potion += 2
+            print("\nYou have been granted " + hp + " health potions.")
+    elif self.class_name == "Mage":
+            self.inventory.mana_potion += 1
+            self.inventory.health_potion += 2
+            print("\nYou have been granted " + mp + " mana potion and " + hp + " health potions.")    
 
 
