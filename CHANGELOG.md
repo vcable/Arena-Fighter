@@ -1,5 +1,10 @@
 **Changelog**
 
+**Version 0.5** -- 8th update, 10/24/19
+
+Added more weapons and spells.  This update also adds a loot system, where a random item is dropped after every encounter.  Different items drop for each class, and the next update will add more weapons/items and a way to equip new weapons from the inventory.  
+
+
 **Version 0.42** -- 7th update, 10/21/19
 
 Added a function to clear the screen before starting the game and improved player death checks.
