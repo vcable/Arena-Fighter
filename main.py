@@ -106,6 +106,8 @@ class Encounters:
         combat = Combat()
         combat.combat_loop()
         print(f"\nYou have defeated the Weak Swordsman {CurrentEnemy.current_enemy.name}! You have tasted victory, but don't expect the rest of the fights to be this easy...")
+        time.sleep(2)
+        PlayerCharacter.player_character.loot()
     
     # Bear encounter   
     def bear_encounter(self):
@@ -114,6 +116,8 @@ class Encounters:
         combat = Combat()
         combat.combat_loop()
         print(f"\nYou have defeated the bear {CurrentEnemy.current_enemy.name}, yet there are many battles that lie ahead...")
+        time.sleep(2)
+        PlayerCharacter.player_character.loot()
         
     def seasoned_g_encounter(self):
         time.sleep(2)
@@ -121,6 +125,8 @@ class Encounters:
         combat = Combat()
         combat.combat_loop()
         print(f"\nYou have defeated the seasoned gladiator {CurrentEnemy.current_enemy.name}, but there are still many battles on the horizon...")
+        time.sleep(2)
+        PlayerCharacter.player_character.loot()
         
     def basilisk_encounter(self):
         time.sleep(2)
@@ -128,6 +134,8 @@ class Encounters:
         combat = Combat()
         combat.combat_loop()
         print(f"\nYou have defeated the hissing basilisk Ronny, but there are more encounters ahead...")
+        time.sleep(2)
+        PlayerCharacter.player_character.loot()
         
     def dragon_encounter(self):
         time.sleep(2)

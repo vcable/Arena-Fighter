@@ -2,6 +2,9 @@ import potions_and_items
 import time
 import inventory
 from termcolor import colored, cprint
+import weapons
+import random
+import spells
 
 # This module defines common class methods, such as attack and deal damage
 
@@ -91,5 +94,72 @@ def reset_stats(self):
             self.inventory.health_potion += 2
             time.sleep(2)
             print("\nYou have been granted " + mp + " mana potion and " + hp + " health potions.")    
+            
+# This function handles the loot system
+def loot(self):
+        
+        if self.class_name == "Fighter":
+                # Items that can drop
+                items = [potions_and_items.HealthPotion.name, 
+                         weapons.Longsword.weapon_type, 
+                         weapons.RustyShortsword.weapon_type, 
+                         weapons.Morningstar.weapon_type]
 
+                loot = random.choice(items)
+                
+                if loot == potions_and_items.HealthPotion.name:
+                        self.inventory.health_potion += 1
+                        time.sleep(2)
+                        print("\nYou loot a health potion.")
+                else:
+                        self.inventory.weapons.append(loot)
+                        time.sleep(2)
+                        print("\nYou loot a " + loot)
+        
+        elif self.class_name == "Mage":
+                
+                items = [potions_and_items.HealthPotion.name,
+                         potions_and_items.ManaPotion.name,
+                         spells.LightningBolt.spell_name,
+                         spells.Stun.spell_name]
+                
+                loot = random.choice(items)
+                
+                if loot == potions_and_items.HealthPotion.name:
+                        self.inventory.health_potion += 1
+                        time.sleep(2)
+                        print("\nYou loot a health potion.")
+                elif loot == potions_and_items.ManaPotion.name:
+                        self.inventory.mana_potion += 1
+                        time.sleep(2)
+                        print("\nYou loot a mana potion.")
+                else:
+                        self.spell_list.append(colored(loot, "yellow"))
+                        self.mana_costs.append("(10 mana)")
+                        time.sleep(2)
+                        print("\nYou loot a " + loot + " scroll.")
+                        
+        elif self.class_name == "Hunter":
+                
+                items = [potions_and_items.HealthPotion.name,
+                         weapons.Crossbow.weapon_type,
+                         potions_and_items.HealthPotion.name,
+                         weapons.Slingshot.weapon_type]
+                
+                loot = random.choice(items)
+                
+                if loot == potions_and_items.HealthPotion.name:
+                        self.inventory.health_potion += 1
+                        time.sleep(2)
+                        print("\nYou loot a health potion.")
+                else:
+                        self.inventory.weapons.append(loot)
+                        time.sleep(2)
+                        print("\nYou loot a " + loot) 
 
+# Equips weapons from inventory
+#def equip(self):
+        #print("Enter the name of the weapon you would like to equip.")
+        #p_input = input("> ")
+        #if p_input in self.weapons:
+                #self.weapon = p_

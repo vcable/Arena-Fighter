@@ -45,6 +45,12 @@ class Fighter:
 
     # Uses health potion
     consume_potion = class_methods.player_consume_potion
+    
+    # Runs loot generator
+    loot = class_methods.loot
+    
+    # Equips different weapon
+    #equip = class_methods.equip
 
 class Mage:
     
@@ -59,12 +65,19 @@ class Mage:
         self.class_name = "Mage"
         self.strength = 5
         self.dexterity = 6
-        self.max_mana = 20
-        self.current_mana = 20
+        self.max_mana = 30
+        self.current_mana = 30
         self.fireball = spells.Fireball
         self.frozen_arrow = spells.FrozenArrow
         self.meteor_shower = spells.MeteorShower
         self.inventory = inventory.Inventory(f"{self.weapon.weapon_type}", 1, 2)
+        
+        self.spell_list = [colored("\nMeteor Shower", "yellow"), 
+                      colored("Fireball", "yellow"), 
+                      colored("Frozen Arrow", "yellow")]
+        self.mana_costs = ["(15 mana)",
+                      "(10 mana)",
+                      "(10 mana)",]
         
         print(f"Your mage's name is {self.name} and he is armed with a {self.weapon.weapon_type}.")
     
@@ -80,22 +93,20 @@ class Mage:
     # Uses health/mana potion
     consume_potion = class_methods.player_consume_potion
         
+    loot = class_methods.loot
+    
+    #equip = class_methods.equip
+    
     # Keeps track of mage's spells and lists them
     def list_spells(self):
-        spell_list = [colored("\nMeteor Shower", "yellow"), 
-                      colored("Fireball", "yellow"), 
-                      colored("Frozen Arrow", "yellow")]
-        mana_costs = ["(15 mana)",
-                      "(10 mana)",
-                      "(10 mana)"]
         
         cprint("\nSPELLS", "yellow")
         
         # I realize this method for concatenating elements from two
         # different arrays is dumb but I'm still new to Python
         j = 0
-        for i in spell_list:
-            print(i + " " + mana_costs[j])  
+        for i in self.spell_list:
+            print(i + " " + self.mana_costs[j])  
             j += 1
                 
     
@@ -177,6 +188,8 @@ class Hunter:
         self.dexterity = 10
         self.inventory = inventory.Inventory(f"{self.weapon.weapon_type}", 1, 0)
         
+        self.weapons = []
+        
         print(f"Your hunter's name is {self.name} and he is armed with a {self.weapon.weapon_type}.")
         
     # Attack method works the same way as the fighter
@@ -193,4 +206,8 @@ class Hunter:
     
     # Uses health potion
     consume_potion = class_methods.player_consume_potion
+    
+    loot = class_methods.loot
+    
+    #equip = class_methods.equip
 

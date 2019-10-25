@@ -1,11 +1,6 @@
-import enemies
-import classes 
-from termcolor import colored, cprint
-import sys
+import class_methods
+import classes
 
-bob = classes.Mage("Bob")
-glorb = enemies.WeakSwordsman("Glorb")
-bob.attack(glorb.name)
-    
-    
-    
+bob = classes.Fighter("Bob")
+bob.loot()
+bob.inventory.print_inventory()

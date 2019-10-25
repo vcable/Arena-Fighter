@@ -8,6 +8,11 @@ class Shortsword:
     weapon_type = colored("shortsword", "yellow")
     damage = 10
 
+class Longsword:
+    
+    weapon_type = colored("longsword", "yellow")
+    damage = 15
+
 class RustyShortsword:
 
     weapon_type = colored("rusty shortsword", "yellow")
@@ -22,6 +27,11 @@ class Longbow:
     
     weapon_type = colored("longbow", "yellow")
     damage = 10
+    
+class Crossbow:
+    
+    weapon_type = colored("crossbow", "yellow")
+    damage = 15
     
 class Claws:
     
@@ -41,4 +51,9 @@ class Fangs:
 class Firebreath:
     
     weapon_type = colored("fire breath", "yellow")
+    damage = 10
+    
+class Slingshot:
+    
+    weapon_type = colored("slingshot", "yellow")
     damage = 10

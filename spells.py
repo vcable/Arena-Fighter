@@ -17,3 +17,15 @@ class MeteorShower:
     spell_name = "Meteor Shower"
     mana_required = 5
     damage = 20
+    
+class LightningBolt:
+    
+    spell_name = "Lightning Bolt"
+    mana_required = 2
+    damage = 10
+    
+class Stun:
+    
+    spell_name = "Stun"
+    mana_required = 5
+    damage = 0
